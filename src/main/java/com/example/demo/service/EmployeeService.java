@@ -1,12 +1,14 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.EmployeeDAO;
+import com.example.demo.entity.Client;
 import com.example.demo.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
 
 import java.util.Date;
+import java.util.List;
 /*
     业务逻辑
 */
@@ -73,12 +75,10 @@ public class EmployeeService {
             return 0;
         }
 
-        boolean exist = isExist(employee.getEmployeeNo());
-        if (exist){
-            return 2;
-        }
 
-        employeeDAO.save(employee);
+        Employee employee1 = employeeDAO.save(employee);
+        if (null == employee1)
+            return -1;
         return 1;
     }
 
@@ -95,5 +95,13 @@ public class EmployeeService {
     //search by employeeNo
     public Employee search(String employNo){
         return employeeDAO.findByEmployeeNo(employNo);
+    }
+    public void update(Employee employee){
+        employeeDAO.save(employee);
+    }
+
+    //return employeeList
+    public List<Employee> getList(){
+        return employeeDAO.getAllByEmployeeNoIsNotNull();
     }
 }
