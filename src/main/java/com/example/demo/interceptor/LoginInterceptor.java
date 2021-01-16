@@ -1,6 +1,6 @@
 package com.example.demo.interceptor;
 
-import com.example.demo.pojo.Employee;
+import com.example.demo.entity.Employee;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
